@@ -45,7 +45,7 @@ export default {
 
       axios
         .post(
-          `http://172.22.0.3:8080/images/upload/${newProduct.prodName}`,
+          `http://207.46.228.91:3000/images/upload/${newProduct.prodName}`,
           fd
         )
         .then((res) => {
@@ -55,7 +55,7 @@ export default {
         });
 
       axios
-        .post("http://172.22.0.3:8080/products/add", newProduct)
+        .post("http://207.46.228.91:3000/products/add", newProduct)
         .then((response) => {
           console.log(response);
           console.log("this product added");

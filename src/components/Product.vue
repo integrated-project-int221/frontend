@@ -109,16 +109,16 @@ export default {
   data() {
     return {
       modalDelete: false,
-      imageUrl: `http://172.22.0.3:8080/images/get/${this.product.imageName}`,
+      imageUrl: `http://207.46.228.91:3000/images/get/${this.product.imageName}`,
     };
   },
   methods: {
     checkImage() {
       try {
-        this.imageUrl = `http://172.22.0.3:8080/images/get/${this.product.imageName}`;
+        this.imageUrl = `http://207.46.228.91:3000/images/get/${this.product.imageName}`;
       } catch (error) {
         this.imageUrl =
-          "http://172.22.0.3:8080/images/get/OngYingGuitar.jpg";
+          "http://207.46.228.91:3000/images/get/OngYingGuitar.jpg";
         console.log(error);
       }
 
@@ -137,13 +137,13 @@ export default {
       console.log(id);
       axios
         .delete(
-          `http://172.22.0.3:8080/images/delete/${this.product.imageName}`
+          `http://207.46.228.91:3000/images/delete/${this.product.imageName}`
         )
         .then((response) => {
           return response.data;
         });
       axios
-        .delete(`http://172.22.0.3:8080/products/delete/${id}`)
+        .delete(`http://207.46.228.91:3000/products/delete/${id}`)
         .then((response) => {
           return response.data;
         })
@@ -154,7 +154,7 @@ export default {
       let id = this.editData.id;
       // this.editData = editValue;
       axios
-        .put(`http://172.22.0.3:8080/products/update/${id}`, editValue)
+        .put(`http://207.46.228.91:3000/products/update/${id}`, editValue)
         .then((response) => {
           console.log(response);
         })
