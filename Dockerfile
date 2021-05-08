@@ -9,5 +9,5 @@ RUN npm run build
 
 FROM nginx:1.19.10-alpine
 COPY --from=build /frontend/dist /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 8081
 CMD ["nginx", "-g", "daemon off;"]
