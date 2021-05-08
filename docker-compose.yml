@@ -2,15 +2,18 @@ version: "3"
 services:
   frontend:
     image: ghcr.io/integrated-project-int221/frontend:master
-    # ports:
-    #   - "8081:8080"
+    ports:
+      - "8081:8080"
     # depends_on:
     #   - backend
-    reverseproxy:
-      image: nginx
-      ports:
-        - "8081:8080"
+    # reverseproxy:
+    #   image: nginx
+    ports:
+      - "8081:8080"
     networks:
-      - myproduct-network
+      - database_myproduct-network
+
 networks:
-  myproduct-network:
+  default:
+    external:
+      name: database_myproduct-network
