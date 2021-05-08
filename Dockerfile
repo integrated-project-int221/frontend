@@ -1,13 +1,12 @@
-FROM node:14.16.1-alpine3.10 as build
-RUN mkdir -p /frontend
-WORKDIR /frontend
+FROM node:latest as build-stage
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . /frontend
+COPY ./ .
 RUN npm run build
 
-
-FROM nginx:1.19.10-alpine
-COPY --from=build /frontend/dist /usr/share/nginx/html
+FROM nginx as production-stage
+RUN mkdir /app
+COPY --from=build-stage /app/dist /app
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 8081
-CMD ["nginx", "-g", "daemon off;"]
