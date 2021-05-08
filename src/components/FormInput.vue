@@ -373,7 +373,7 @@ export default {
 
     async fetchColorsResult() {
       try {
-        const res = await fetch("http://52.187.35.188:3000/colors");
+        const res = await fetch("http://172.20.0.3:3000/colors");
         const data = await res.json();
         return data;
       } catch (error) {
@@ -382,7 +382,7 @@ export default {
     },
     async fetchBrandsResult() {
       try {
-        const res = await fetch("http://52.187.35.188:3000/brands");
+        const res = await fetch("http://172.20.0.3:3000/brands");
         const data = await res.json();
         return data;
       } catch (error) {
@@ -390,7 +390,7 @@ export default {
       }
     },
     async fetchAllProductResult() {
-      const res = await fetch("http://52.187.35.188:3000/products/items");
+      const res = await fetch("http://172.20.0.3:3000/products/items");
       const data = await res.json();
       return data;
     },
