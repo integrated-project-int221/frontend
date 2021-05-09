@@ -1,9 +1,17 @@
 version: "3"
 services:
+  backend:
+    container_name: api-container
+    image: ghcr.io/integrated-project-int221/backend:master
+    ports:
+       - "3000:8080"
   frontend:
+    container_name: frontend-container
     image: ghcr.io/integrated-project-int221/frontend:master
     ports:
       - "8081:80"
+    depends_on: 
+      - backend
 
 networks:
   default:
