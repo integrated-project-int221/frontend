@@ -4,7 +4,7 @@ services:
     container_name: api-container
     image: ghcr.io/integrated-project-int221/backend:master
     ports:
-       - "8080:8080"
+       - "3000:8080"
   frontend:
     container_name: frontend-container
     image: ghcr.io/integrated-project-int221/frontend:master
@@ -12,6 +12,14 @@ services:
       - "8081:80"
     depends_on: 
       - backend
+
+  reverseproxy:
+    container_name: reverseproxy
+   image: nginx
+    volumes:
+       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+     ports:
+       - "80:80"    
 
 networks:
   default:
