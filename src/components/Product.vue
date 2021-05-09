@@ -4,7 +4,7 @@
       <!--product data-->
       <img
         class=" w-2/5 object-cover object-center h-80"
-        :src="'http://172.22.0.3:8080/images/get/' + this.product.imageName"
+        :src="'http://localhost:8080/images/get/' + this.product.imageName"
       />
       <div class="w-2/3 p-4">
         <h1 class="text-gray-900 font-bold text-2xl">
@@ -124,13 +124,13 @@ export default {
       console.log(id);
       axios
         .delete(
-          `http://172.22.0.3:8080/images/delete/${this.product.imageName}`
+          `http://localhost:8080/images/delete/${this.product.imageName}`
         )
         .then((response) => {
           return response.data;
         })
         .then(() => {
-          axios.delete(`http://172.22.0.3:8080/products/delete/${id}`);
+          axios.delete(`http://localhost:8080/products/delete/${id}`);
         })
         .then(this.toggleDelete())
 
