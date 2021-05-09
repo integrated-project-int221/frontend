@@ -10,4 +10,10 @@ RUN npm run build
 # FROM nginx:1.19.10-alpine
 # ADD nginx.conf /etc/nginx/conf.d/default.conf
 # COPY --from=build /frontend/dist /usr/share/nginx/html/frontend/
+# EXPOSE 80
+
+FROM nginx as production-stage
+RUN mkdir /frontend
+COPY --from=build-stage /frontend/dist /frontend
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
