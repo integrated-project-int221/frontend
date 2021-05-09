@@ -69,7 +69,7 @@ export default {
     },
     async fetchProductResult() {
       try {
-        const res = await fetch("http://207.46.228.91:3000/products/items");
+        const res = await fetch("http://172.22.0.3:3000/products/items");
         const data = await res.json();
         return data;
       } catch (error) {
