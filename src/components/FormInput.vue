@@ -72,10 +72,10 @@
                 id="my-file"
               />
             </label>
-            <p class="mb-0">file name: {{ formInputValue.imageName.name }}</p>
+            <!-- <p class="mb-0">file name: {{ formInputValue.imageName.name }}</p>
             <p class="mb-0">
               size: {{ formInputValue.imageName.size / 1024 }}KB
-            </p>
+            </p> -->
           </template>
         </div>
       </div>
@@ -232,8 +232,8 @@
   <!-- //test -->
   <div class="test">
     <!-- <pre> form value {{ formInputValue }} </pre>
-    <pre> check error {{ checkValidate }} </pre>
-    <pre> error {{ error }} </pre> -->
+    <pre> check error {{ checkValidate }} </pre> -->
+    <pre> error {{ formInputValue }} </pre>
   </div>
 </template>
 
@@ -253,7 +253,7 @@ export default {
       formInputValue: {
         prodName: "",
         prodDescription: "",
-        price: 0.00,
+        price: 0.0,
         prodManufactured: "",
         brands: "",
         productColor: [],
@@ -276,6 +276,7 @@ export default {
       //
       nameImageFromProduct: "",
       nameImageInput: "",
+      checkDuplicateName: "",
       //
     };
   },
@@ -284,13 +285,15 @@ export default {
       let count = 0;
       for (let index = 0; index < this.productsResults.length; index++) {
         const allProductName = this.productsResults[index].prodName;
-        // console.log(allProductName);
 
         if (this.formInputValue.prodName == allProductName) {
-          if(this.formInputValue.prodName == this.testEditData.prodName){
+          if(this.formInputValue.prodName == this.checkDuplicateName){
+            
             count -= 1;
+            // console.log(count)
           }
           count += 1;
+          
         }
       }
       if (count > 0 || this.formInputValue.prodName === "") {
@@ -330,22 +333,16 @@ export default {
 
       return this.nameImagefromProduct;
     },
-    //
     previewImage(event) {
       this.formInputValue.imageObj = event.target.files[0];
-      //defualt ของ imageObj
-      // console.log("imgObj below");
-      // console.log(this.formInputValue.imageObj);
+
 
       var input = event.target;
       if (input.files) {
         var reader = new FileReader();
         reader.onload = (e) => {
           this.preview = e.target.result;
-          // this.imgUrlValue = this.preview
-          // console.log("preview and Url");
-          // console.log(this.preview);
-          // console.log(this.imgUrlValue);
+
         };
         this.nameImageInput = input.files[0].name;
         reader.readAsDataURL(input.files[0]);
@@ -353,7 +350,6 @@ export default {
     },
 
     submit() {
-      
       this.formValidate();
       if (
         this.checkValidate.errorName ||
@@ -365,9 +361,13 @@ export default {
       ) {
         console.log("Input error");
       } else {
-        // console.log("value Added");
-        this.formInputValue.imageName = this.nameImageFromProduct + this.nameImageInput;
-        this.$emit("form-submit", this.formInputValue);
+        let sendValue = this.formInputValue
+        if(this.nameImageInput == ""){
+          sendValue.imageName = this.formInputValue.imageName
+        }else{
+          sendValue.imageName = this.formInputValue.prodName + this.nameImageInput;
+        }
+        this.$emit("form-submit", sendValue);
       }
     },
 
@@ -411,6 +411,8 @@ export default {
           this.testEditData?.productColor || []),
         (this.formInputValue.imageName = this.testEditData?.imageName || ""),
         (this.formInputValue.imageObj = "");
+
+      this.checkDuplicateName = this.testEditData?.prodName || "";
       this.preview = this.imgUrlValue;
     } catch (error) {
       console.log(error);

@@ -39,6 +39,7 @@
 
       <!---->
       <div class="test">
+        <pre> {{ pictureResults }} </pre>
       </div>
     </div>
   </div>
@@ -55,22 +56,22 @@ export default {
   data() {
     return {
       productResults: [],
+      pictureResults: [],
       openModal: false,
     };
   },
 
   methods: {
-    deleteArray(id) {
-      this.productResults = this.productResults.filter((product) => {
-        return product.prodCode !== id;
-      });
+    deleteArray(id,image) {
+      console.log(id,image)
+      location.reload();
+      
     },
-    editReview() {},
 
     goProductList() {
       this.$router.push("/productlist");
     },
-    
+
     async fetchProductResult() {
       try {
         const res = await fetch("http://207.46.228.91:3000/products/items");
@@ -82,12 +83,17 @@ export default {
     },
   },
   async created() {
-    try {
     this.productResults = await this.fetchProductResult();
-    } catch (error) {
-      console.log(error);
-    }
+    this.pictureResults = this.productResults.map((product) => {
+      // return product.imageName !== image
+      return product.imageName;
+    });
   },
+  watch:{
+    pictureResults: function(){
+
+    }
+  }
 };
 </script>
 

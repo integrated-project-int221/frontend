@@ -1,7 +1,10 @@
 <template>
-  <div class="py-6 ">
+  <div class="py-6">
     <div class="flex bg-white shadow-lg rounded-lg overflow-hidden border">
-      <img class="border border-black w-2/5 object-cover object-center max-h-80" :src="imageUrl" />
+      <img
+        class="border border-black w-2/5 object-cover object-center max-h-80"
+        :src="imageUrl"
+      />
       <!-- :src="require(imageUrl)" -->
 
       <div class="w-2/3 p-4">
@@ -36,7 +39,7 @@
               >
                 <div>
                   <span
-                    class="border border-black  w-6 h-6 block cursor-pointer ml-1"
+                    class="border border-black w-6 h-6 block cursor-pointer ml-1"
                     :style="{ 'background-color': eachColor.colorValue }"
                   ></span>
                 </div>
@@ -109,21 +112,21 @@ export default {
   data() {
     return {
       modalDelete: false,
-      imageUrl: `http://207.46.228.91:3000/images/get/${this.product.imageName}`,
+      imageUrl: "",
     };
   },
   methods: {
-    checkImage() {
-      try {
-        this.imageUrl = `http://207.46.228.91:3000/images/get/${this.product.imageName}`;
-      } catch (error) {
-        this.imageUrl =
-          "http://207.46.228.91:3000/images/get/OngYingGuitar.jpg";
-        console.log(error);
-      }
+    // checkImage() {
+    //   try {
+    //     this.imageUrl = `http://207.46.228.91:3000/images/get/${this.product.imageName}`;
+    //   } catch (error) {
+    //     this.imageUrl =
+    //       "http://207.46.228.91:3000/images/get/OngYingGuitar.jpg";
+    //     console.log(error);
+    //   }
 
-      return this.imageUrl;
-    },
+    //   return this.imageUrl;
+    // },
     toggleDelete() {
       this.modalDelete = !this.modalDelete;
     },
@@ -141,14 +144,16 @@ export default {
         )
         .then((response) => {
           return response.data;
-        });
-      axios
-        .delete(`http://207.46.228.91:3000/products/delete/${id}`)
+        })
+        .then(() => {
+          axios.delete(`http://207.46.228.91:3000/products/delete/${id}`);
+        })
         .then((response) => {
           return response.data;
         })
-        .then(this.toggleDelete());
-      this.$emit("deleteReview", id);
+        .then(this.toggleDelete())
+
+        .then(this.$emit("deleteReview", id, this.product.imageName));
     },
     editArray(editValue) {
       let id = this.editData.id;
@@ -165,6 +170,9 @@ export default {
     },
   },
   computed: {},
+  created() {
+    this.imageUrl = `http://207.46.228.91:3000/images/get/${this.product.imageName}`;
+  },
 };
 </script>
 
