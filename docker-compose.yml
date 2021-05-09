@@ -14,8 +14,8 @@ services:
       - backend
 
   reverseproxy:
-    container_name: reverseproxy
-    image: nginx
+    container_name: reverseproxy-container
+    image: nginx:1.19.10-alpine
     volumes:
        - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
