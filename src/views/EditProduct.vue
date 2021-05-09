@@ -57,7 +57,7 @@ export default {
       if (editValue.imageObj == "") {
         axios
           .put(
-            `http://172.22.0.3:8080/images/updatename/${this.id}/${editValue.prodName}`
+            this.url+`backend/images/updatename/${this.id}/${editValue.prodName}`
           )
           .then(() => {
             console.log("this images was send then post product");
@@ -67,7 +67,7 @@ export default {
         fd.append("File", editValue.imageObj, editValue.imageObj.name);
         axios
           .put(
-            `http://172.22.0.3:8080/images/update/${editValue.prodName}/${this.productByid.imageName}`,
+            this.url+`images/update/${editValue.prodName}/${this.productByid.imageName}`,
             fd
           )
           .then(() => {
@@ -76,7 +76,7 @@ export default {
           });
       }
       axios
-        .put(`http://172.22.0.3:8080/products/update/${this.id}`, editValue)
+        .put(this.url+`products/update/${this.id}`, editValue)
         .then((response) => {
           console.log(response);
         })
@@ -87,7 +87,7 @@ export default {
     },
     async fetchProductResult() {
       const res = await fetch(
-        `http://172.22.0.3:8080/products/item/${this.id}`
+        this.url+`products/item/${this.id}`
       );
       const data = await res.json();
       return data;
@@ -95,7 +95,7 @@ export default {
   },
   async created() {
     this.productByid = await this.fetchProductResult();
-    this.imgURL = `http://172.22.0.3:8080/images/get/${this.productByid.imageName}`;
+    this.imgURL = this.url+`images/get/${this.productByid.imageName}`;
   },
 };
 </script>

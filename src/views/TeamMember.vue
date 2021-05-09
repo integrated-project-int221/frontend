@@ -43,7 +43,7 @@
         <team-member-card
           name="Supakit Teppong"
           position="#Database"
-          description="ผมนายสุพกิด รับผิดชอบหน้าที่ Backend(Exception), Devops และ Database ครับ"
+          description="ผมนายศุภกิตติ์ เทพพงษ์ รับผิดชอบหน้าที่ Backend(Exception), Devops และ Database ครับ"
         >
           <template v-slot:images>
             <img
