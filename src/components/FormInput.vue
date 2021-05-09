@@ -72,10 +72,7 @@
                 id="my-file"
               />
             </label>
-            <!-- <p class="mb-0">file name: {{ formInputValue.imageName.name }}</p>
-            <p class="mb-0">
-              size: {{ formInputValue.imageName.size / 1024 }}KB
-            </p> -->
+
           </template>
         </div>
       </div>
@@ -90,6 +87,7 @@
           class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
           id="name"
           name="name"
+          maxlength="40"
           v-model="formInputValue.prodName"
           @change="changeNameImage()"
           type="text"
@@ -99,7 +97,13 @@
           v-show="checkValidate.errorName"
           class="text-red-600 text-base font-medium italic"
         >
-          Please input Product Name.
+          Please input Name. 
+        </p>
+        <p
+          v-show="checkDuplicateName"
+          class="text-red-600 text-base font-medium italic"
+        >
+          !! Duplicate Name.
         </p>
       </div>
       <div class="mt-2">
@@ -146,7 +150,6 @@
               :id="option.id"
               :value="option"
             />
-            <!-- <span class="check-color block p-1 border-2 border-white hover:border-black rounded-full transition ease-in duration-300 w-6 h-6 bg-blue-900 rounded-full" :style="{ 'background-color': option.colorValue }"></span> -->
           </label>
         </div>
         <p
@@ -229,12 +232,7 @@
       </div>
     </form>
   </div>
-  <!-- //test -->
-  <div class="test">
-    <!-- <pre> form value {{ formInputValue }} </pre>
-    <pre> check error {{ checkValidate }} </pre> -->
-    <pre> error {{ formInputValue }} </pre>
-  </div>
+
 </template>
 
 <script>
@@ -261,7 +259,6 @@ export default {
         imageObj: "",
       },
       preview: null,
-      //test backend img
       //check validate
       checkValidate: {
         errorName: false,
@@ -271,7 +268,6 @@ export default {
         errorBrands: false,
         errorColors: false,
         errorImage: false,
-        // imageObj: "",
       },
       //
       nameImageFromProduct: "",
@@ -290,13 +286,13 @@ export default {
           if(this.formInputValue.prodName == this.checkDuplicateName){
             
             count -= 1;
-            // console.log(count)
           }
           count += 1;
           
         }
       }
-      if (count > 0 || this.formInputValue.prodName === "") {
+      this.checkDuplicateName = count > 0 ? true : false;
+      if (this.formInputValue.prodName === "") {
         this.checkValidate.errorName = true;
       } else {
         this.checkValidate.errorName = false;

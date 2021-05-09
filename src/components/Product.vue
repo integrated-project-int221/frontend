@@ -1,12 +1,11 @@
 <template>
   <div class="py-6">
     <div class="flex bg-white shadow-lg rounded-lg overflow-hidden border">
+      <!--product data-->
       <img
-        class="border border-black w-2/5 object-cover object-center max-h-80"
-        :src="imageUrl"
+        class=" w-2/5 object-cover object-center h-80"
+        :src="'http://207.46.228.91:3000/images/get/' + this.product.imageName"
       />
-      <!-- :src="require(imageUrl)" -->
-
       <div class="w-2/3 p-4">
         <h1 class="text-gray-900 font-bold text-2xl">
           {{ product.prodName }}
@@ -30,7 +29,6 @@
         </p>
         <div class="flex item-center justify-between mt-3">
           <h1 class="text-gray-700 font-bold text-xl">
-            <!-- {{ product.productColor }} -->
             <span class="text-xl text-black font-medium flex flex-row">
               <div
                 class=""
@@ -47,7 +45,7 @@
             </span>
           </h1>
           <div class="mt-2 font-semibold text-gray-600 text-sm">
-            {{ product.prodManufactured }}
+            Date : {{ product.prodManufactured }}
           </div>
         </div>
         <div class="flex item-center justify-around mt-3">
@@ -66,6 +64,8 @@
         </div>
       </div>
     </div>
+
+    <!--Modal-->
     <div>
       <base-modal
         v-if="modalDelete"
@@ -93,11 +93,6 @@
       </base-modal>
     </div>
   </div>
-  <!-- <div class="test">
-    <pre>{{ imageUrl }}</pre>
-    <img :src="checkImage()" />
-  </div> -->
-  <!-- <pre> {{ this.modalDelete }} </pre> -->
 </template>
 
 <script>
@@ -112,21 +107,11 @@ export default {
   data() {
     return {
       modalDelete: false,
-      imageUrl: "",
+      url: "http://207.46.228.91:3000/images/get/",
     };
   },
-  methods: {
-    // checkImage() {
-    //   try {
-    //     this.imageUrl = `http://207.46.228.91:3000/images/get/${this.product.imageName}`;
-    //   } catch (error) {
-    //     this.imageUrl =
-    //       "http://207.46.228.91:3000/images/get/OngYingGuitar.jpg";
-    //     console.log(error);
-    //   }
 
-    //   return this.imageUrl;
-    // },
+  methods: {
     toggleDelete() {
       this.modalDelete = !this.modalDelete;
     },
@@ -148,31 +133,12 @@ export default {
         .then(() => {
           axios.delete(`http://207.46.228.91:3000/products/delete/${id}`);
         })
-        .then((response) => {
-          return response.data;
-        })
         .then(this.toggleDelete())
 
-        .then(this.$emit("deleteReview", id, this.product.imageName));
-    },
-    editArray(editValue) {
-      let id = this.editData.id;
-      // this.editData = editValue;
-      axios
-        .put(`http://207.46.228.91:3000/products/update/${id}`, editValue)
-        .then((response) => {
-          console.log(response);
-        })
-        .then(
-          this.$router.push("/")
-          // this.$emit("editReview", id);
-        );
+        .then(this.$emit("deleteReview", id));
     },
   },
   computed: {},
-  created() {
-    this.imageUrl = `http://207.46.228.91:3000/images/get/${this.product.imageName}`;
-  },
 };
 </script>
 

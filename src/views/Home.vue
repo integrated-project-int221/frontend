@@ -1,5 +1,4 @@
 <template>
-  <!-- <pre>{{ productResults }}</pre> -->
 
   <div class="home">
     <div class="container">
@@ -16,11 +15,7 @@
             >
               Guitar Store
             </h1>
-            <!-- <a
-              class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-              href="#"
-              >products</a
-            > -->
+            
           </div>
         </div>
       </section>
@@ -37,10 +32,8 @@
         </div>
       </div>
 
-      <!---->
-      <div class="test">
-        <pre> {{ pictureResults }} </pre>
-      </div>
+      <!--end home-->
+      
     </div>
   </div>
 </template>
@@ -56,22 +49,24 @@ export default {
   data() {
     return {
       productResults: [],
-      pictureResults: [],
       openModal: false,
     };
   },
 
   methods: {
-    deleteArray(id,image) {
-      console.log(id,image)
-      location.reload();
-      
+    deleteArray(id, image) {
+      console.log(id, image);
+      this.productResults = this.productResults.filter((product) => {
+        return product.prodCode !== id
+      })
     },
 
     goProductList() {
       this.$router.push("/productlist");
     },
-
+    async reload() {
+      this.productResults = await this.fetchProductResult();
+    },
     async fetchProductResult() {
       try {
         const res = await fetch("http://207.46.228.91:3000/products/items");
@@ -84,16 +79,8 @@ export default {
   },
   async created() {
     this.productResults = await this.fetchProductResult();
-    this.pictureResults = this.productResults.map((product) => {
-      // return product.imageName !== image
-      return product.imageName;
-    });
   },
-  watch:{
-    pictureResults: function(){
-
-    }
-  }
+  
 };
 </script>
 

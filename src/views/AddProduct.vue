@@ -52,17 +52,13 @@ export default {
           console.log(res);
           console.log(newProduct.prodName);
           console.log("this images was send then post product");
-        });
-
-      axios
-        .post("http://207.46.228.91:3000/products/add", newProduct)
+        })
+        .then(axios.post("http://207.46.228.91:3000/products/add", newProduct))
         .then((response) => {
           console.log(response);
           console.log("this product added");
         })
-        .then(() => {
-          this.toggleModal();
-        });
+        .then(this.toggleModal());
       // .then();
       // window.location.href = "http://localhost:8081/"
       // this.$router.push("/")

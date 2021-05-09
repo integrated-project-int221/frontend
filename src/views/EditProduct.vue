@@ -4,10 +4,7 @@
       <h1 class="font-bold">Edit Product</h1>
     </div>
     <div>
-      <!-- <pre> product: {{ this.id }}</pre> -->
-      <!-- <pre> url: {{ imgURL }}</pre> -->
-      <!-- <img :src="imgURL" /> -->
-      <!-- <pre class="w-screen overflow-hidden"> product: {{ productByid }}</pre> -->
+
     </div>
 
     <!--Add new Product-->
@@ -78,10 +75,6 @@ export default {
             console.log(this.productByid.imageName);
           });
       }
-
-      // console.log("imageName");
-      // console.log(editValue.imageName);
-
       axios
         .put(`http://207.46.228.91:3000/products/update/${this.id}`, editValue)
         .then((response) => {
@@ -90,8 +83,7 @@ export default {
         .then(() => {
           this.toggleModal()
         });
-      // (window.location.href = "http://localhost:8081/")
-      // this.$router.push("/")
+
     },
     async fetchProductResult() {
       const res = await fetch(
