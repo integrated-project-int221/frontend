@@ -366,7 +366,7 @@ export default {
         console.log("Input error");
       } else {
         // console.log("value Added");
-        this.formInputValue.imageName = this.nameImagefromProduct + this.nameImageInput;
+        this.formInputValue.imageName = this.nameImageFromProduct + this.nameImageInput;
         this.$emit("form-submit", this.formInputValue);
       }
     },
