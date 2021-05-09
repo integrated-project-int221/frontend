@@ -3,8 +3,8 @@ WORKDIR /frontend
 COPY package*.json ./
 RUN npm install
 COPY . /frontend
-ARG http://207.46.228.91:8080/
-ENV VUE_APP_BACKEND_URL http://207.46.228.91:3000/
+ARG http://172.22.0.3:8080/
+ENV VUE_APP_BACKEND_URL http://172.22.0.3:8080/
 RUN npm run build
 
 FROM nginx:1.19.10-alpine
