@@ -107,7 +107,6 @@ export default {
   data() {
     return {
       modalDelete: false,
-      url: "http://207.46.228.91:3000/images/get/",
     };
   },
 
