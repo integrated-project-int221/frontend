@@ -257,7 +257,7 @@ export default {
         productColor: [],
         imageName: "",
         imageObj: "",
-        url: `${process.env.VUE_APP_ROOT_API}`
+        // url: `${process.env.VUE_APP_ROOT_API}`
       },
       preview: null,
       //check validate
@@ -370,7 +370,7 @@ export default {
 
     async fetchColorsResult() {
       try {
-        const res = await fetch(this.url+"colors");
+        const res = await fetch("http://207.46.228.91/backend/colors");
         const data = await res.json();
         return data;
       } catch (error) {
@@ -379,7 +379,7 @@ export default {
     },
     async fetchBrandsResult() {
       try {
-        const res = await fetch(this.url+"brands");
+        const res = await fetch("http://207.46.228.91/backend/brands");
         const data = await res.json();
         return data;
       } catch (error) {
@@ -387,7 +387,7 @@ export default {
       }
     },
     async fetchAllProductResult() {
-      const res = await fetch(this.url+"products/items");
+      const res = await fetch("http://207.46.228.91/backend/products/items");
       const data = await res.json();
       return data;
     },

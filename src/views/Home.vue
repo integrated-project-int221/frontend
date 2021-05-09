@@ -70,7 +70,7 @@ export default {
     },
     async fetchProductResult() {
       try {
-        const res = await fetch(this.url+"products/items");
+        const res = await fetch("http://207.46.228.91/backend/products/items");
         const data = await res.json();
         return data;
       } catch (error) {
