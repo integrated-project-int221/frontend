@@ -50,6 +50,7 @@ export default {
     return {
       productResults: [],
       openModal: false,
+      
     };
   },
 

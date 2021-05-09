@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       modalOpen: false,
+      url: `${process.env.VUE_APP_ROOT_API}`
     };
   },
   methods: {

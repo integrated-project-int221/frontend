@@ -107,6 +107,7 @@ export default {
   data() {
     return {
       modalDelete: false,
+      url: `${process.env.VUE_APP_ROOT_API}`
     };
   },
 
