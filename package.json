@@ -18,6 +18,7 @@
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
+  "proxy": "http://172.22.0.3:8080",
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
