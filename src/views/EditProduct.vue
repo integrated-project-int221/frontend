@@ -58,7 +58,7 @@ export default {
       if (editValue.imageObj == "") {
         axios
           .put(
-            `http://207.46.228.91/backend/images/updatename/${this.id}/${editValue.prodName}`
+            `${this.url}images/updatename/${this.id}/${editValue.prodName}`
           )
           .then(() => {
             console.log("this images was send then post product");
