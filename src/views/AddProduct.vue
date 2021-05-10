@@ -33,6 +33,10 @@ export default {
   data() {
     return {
       modalOpen: false,
+<<<<<<< HEAD
+=======
+      // url: `${process.env.VUE_APP_REST_API}`
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
     };
   },
   methods: {
@@ -45,7 +49,11 @@ export default {
 
       axios
         .post(
+<<<<<<< HEAD
           `http://207.46.228.91:3000/images/upload/${newProduct.prodName}`,
+=======
+          `http://207.46.228.91/restapi/images/upload/${newProduct.prodName}`,
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
           fd
         )
         .then((res) => {
@@ -53,14 +61,22 @@ export default {
           console.log(newProduct.prodName);
           console.log("this images was send then post product");
         })
+<<<<<<< HEAD
         .then(axios.post("http://207.46.228.91:3000/products/add", newProduct))
+=======
+        .then(axios.post("http://207.46.228.91/restapi/products/add", newProduct))
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
         .then((response) => {
           console.log(response);
           console.log("this product added");
         })
         .then(this.toggleModal());
       // .then();
+<<<<<<< HEAD
       // window.location.href = "http://localhost:8081/"
+=======
+      // window.location.href = "http://172.22.0.3:8081/"
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
       // this.$router.push("/")
     },
   },

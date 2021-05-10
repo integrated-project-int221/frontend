@@ -45,6 +45,10 @@ export default {
       productByid: {},
       imgURL: "",
       modalOpen: false,
+<<<<<<< HEAD
+=======
+      url: `${process.env.VUE_APP_REST_API}`
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
     };
   },
 
@@ -57,7 +61,11 @@ export default {
       if (editValue.imageObj == "") {
         axios
           .put(
+<<<<<<< HEAD
             `http://207.46.228.91:3000/images/updatename/${this.id}/${editValue.prodName}`
+=======
+            `http://207.46.228.91/restapi/images/updatename/${this.id}/${editValue.prodName}`
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
           )
           .then(() => {
             console.log("this images was send then post product");
@@ -67,7 +75,11 @@ export default {
         fd.append("File", editValue.imageObj, editValue.imageObj.name);
         axios
           .put(
+<<<<<<< HEAD
             `http://207.46.228.91:3000/images/update/${editValue.prodName}/${this.productByid.imageName}`,
+=======
+            `http://207.46.228.91/restapi/images/update/${editValue.prodName}/${this.productByid.imageName}`,
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
             fd
           )
           .then(() => {
@@ -76,7 +88,11 @@ export default {
           });
       }
       axios
+<<<<<<< HEAD
         .put(`http://207.46.228.91:3000/products/update/${this.id}`, editValue)
+=======
+        .put(`http://207.46.228.91/restapi/products/update/${this.id}`, editValue)
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
         .then((response) => {
           console.log(response);
         })
@@ -87,7 +103,11 @@ export default {
     },
     async fetchProductResult() {
       const res = await fetch(
+<<<<<<< HEAD
         `http://207.46.228.91:3000/products/item/${this.id}`
+=======
+        `http://207.46.228.91/restapi/products/item/${this.id}`
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
       );
       const data = await res.json();
       return data;
@@ -95,7 +115,11 @@ export default {
   },
   async created() {
     this.productByid = await this.fetchProductResult();
+<<<<<<< HEAD
     this.imgURL = `http://207.46.228.91:3000/images/get/${this.productByid.imageName}`;
+=======
+    this.imgURL = `http://207.46.228.91/restapi/images/get/${this.productByid.imageName}`;
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
   },
 };
 </script>

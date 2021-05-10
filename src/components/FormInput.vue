@@ -233,11 +233,14 @@
     </form>
   </div>
 
+<<<<<<< HEAD
   <!---->
   <div>
     <pre>{{this.checkDuplicateName}}</pre>
   </div>
 
+=======
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
 </template>
 
 <script>
@@ -262,6 +265,10 @@ export default {
         productColor: [],
         imageName: "",
         imageObj: "",
+<<<<<<< HEAD
+=======
+        // url: `${process.env.VUE_APP_REST_API}`
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
       },
       preview: null,
       //check validate
@@ -279,7 +286,10 @@ export default {
       nameImageInput: "",
       checkDuplicateName: "",
       //
+<<<<<<< HEAD
       url: "http://207.46.228.91:3000/"
+=======
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
     };
   },
   methods: {
@@ -375,7 +385,11 @@ export default {
 
     async fetchColorsResult() {
       try {
+<<<<<<< HEAD
         const res = await fetch(this.url + "/colors");
+=======
+        const res = await fetch("http://207.46.228.91/restapi/colors");
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
         const data = await res.json();
         return data;
       } catch (error) {
@@ -384,7 +398,11 @@ export default {
     },
     async fetchBrandsResult() {
       try {
+<<<<<<< HEAD
         const res = await fetch(this.url +"brands");
+=======
+        const res = await fetch("http://207.46.228.91/restapi/brands");
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
         const data = await res.json();
         return data;
       } catch (error) {
@@ -392,7 +410,11 @@ export default {
       }
     },
     async fetchAllProductResult() {
+<<<<<<< HEAD
       const res = await fetch(this.url +"products/items");
+=======
+      const res = await fetch("http://207.46.228.91/restapi/products/items");
+>>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
       const data = await res.json();
       return data;
     },
