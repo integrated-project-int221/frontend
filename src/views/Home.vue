@@ -50,10 +50,7 @@ export default {
     return {
       productResults: [],
       openModal: false,
-<<<<<<< HEAD
-=======
-      // url: `${process.env.VUE_APP_REST_API}`
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+      url: `${process.env.VUE_APP_REST_API}`
     };
   },
 
@@ -73,11 +70,7 @@ export default {
     },
     async fetchProductResult() {
       try {
-<<<<<<< HEAD
-        const res = await fetch("http://207.46.228.91:3000/products/items");
-=======
-        const res = await fetch("http://207.46.228.91/restapi/products/items");
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+        const res = await fetch(this.url+ "products/items");
         const data = await res.json();
         return data;
       } catch (error) {

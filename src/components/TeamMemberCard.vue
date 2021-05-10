@@ -3,7 +3,6 @@
     class="max-w-sm rounded overflow-hidden shadow-xl cursor-pointer border-2 hover:border-gray-600"
   >
     <slot name="images"></slot>
-    <!-- <img class="max-w-sm w-full h-80 object-cover object-center" :src="`@/assets/${src}`" > -->
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">{{ name }}</div>
       <p class="text-base">

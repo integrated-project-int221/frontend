@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-FROM node:14.16.1-alpine3.10 as build
-WORKDIR /frontend
-COPY package*.json ./
-RUN npm install
-COPY . /frontend
-ARG BACKEND_URL
-ENV VUE_APP_BACKEND_URL $BACKEND_URL
-RUN npm run build
-
-FROM nginx:1.19.10-alpine
-ADD nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /frontend/dist /usr/share/nginx/html/frontend/
-EXPOSE 80
-=======
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
@@ -30,4 +15,3 @@ CMD ["nginx", "-g", "daemon off;"]
 # COPY --from=build-stage /frontend/dist /frontend
 # COPY nginx.conf /etc/nginx/nginx.conf
 # EXPOSE 80
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe

@@ -89,7 +89,6 @@
           name="name"
           maxlength="40"
           v-model="formInputValue.prodName"
-          @change="changeNameImage()"
           type="text"
           placeholder="Your Name"
         />
@@ -233,14 +232,11 @@
     </form>
   </div>
 
-<<<<<<< HEAD
   <!---->
   <div>
     <pre>{{this.checkDuplicateName}}</pre>
   </div>
 
-=======
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
 </template>
 
 <script>
@@ -265,10 +261,7 @@ export default {
         productColor: [],
         imageName: "",
         imageObj: "",
-<<<<<<< HEAD
-=======
         // url: `${process.env.VUE_APP_REST_API}`
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
       },
       preview: null,
       //check validate
@@ -282,14 +275,10 @@ export default {
         errorImage: false,
       },
       //
-      nameImageFromProduct: "",
       nameImageInput: "",
       checkDuplicateName: "",
       //
-<<<<<<< HEAD
-      url: "http://207.46.228.91:3000/"
-=======
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+       url: `${process.env.VUE_APP_REST_API}`
     };
   },
   methods: {
@@ -299,7 +288,7 @@ export default {
         const allProductName = this.productsResults[index].prodName;
 
         if (this.formInputValue.prodName == allProductName) {
-          if(this.formInputValue.prodName == this.checkDuplicateName){
+          if(this.checkDuplicateName == this.formInputValue.prodName){
             
             count -= 1;
           }
@@ -308,11 +297,7 @@ export default {
         }
       }
       this.checkDuplicateName = count > 0 ? true : false;
-      if (this.formInputValue.prodName === "") {
-        this.checkValidate.errorName = true;
-      } else {
-        this.checkValidate.errorName = false;
-      }
+      this.checkValidate.errorName = this.formInputValue.prodName === "" ? true : false;
 
       if (
         this.formInputValue.prodDescription === "" ||
@@ -340,11 +325,6 @@ export default {
       this.checkValidate.errorImage = this.nameImageInput === "" ? true : false;
     },
 
-    changeNameImage() {
-      this.nameImagefromProduct = this.formInputValue.prodName;
-
-      return this.nameImagefromProduct;
-    },
     previewImage(event) {
       this.formInputValue.imageObj = event.target.files[0];
 
@@ -369,7 +349,8 @@ export default {
         this.checkValidate.errorProdManufactured ||
         this.checkValidate.errorPrice ||
         this.checkValidate.errorBrands ||
-        this.checkValidate.errorColors
+        this.checkValidate.errorColors || 
+        this.checkDuplicateName
       ) {
         console.log("Input error");
       } else {
@@ -385,11 +366,8 @@ export default {
 
     async fetchColorsResult() {
       try {
-<<<<<<< HEAD
-        const res = await fetch(this.url + "/colors");
-=======
-        const res = await fetch("http://207.46.228.91/restapi/colors");
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+        // const res = await fetch(this.url + "/colors");
+        const res = await fetch(`${this.url}colors`);
         const data = await res.json();
         return data;
       } catch (error) {
@@ -398,11 +376,8 @@ export default {
     },
     async fetchBrandsResult() {
       try {
-<<<<<<< HEAD
-        const res = await fetch(this.url +"brands");
-=======
-        const res = await fetch("http://207.46.228.91/restapi/brands");
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+        // const res = await fetch(this.url +"brands");
+        const res = await fetch(`${this.url}brands`);
         const data = await res.json();
         return data;
       } catch (error) {
@@ -410,11 +385,8 @@ export default {
       }
     },
     async fetchAllProductResult() {
-<<<<<<< HEAD
-      const res = await fetch(this.url +"products/items");
-=======
-      const res = await fetch("http://207.46.228.91/restapi/products/items");
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+      // const res = await fetch(this.url +"products/items");
+      const res = await fetch(`${this.url}products/items`);
       const data = await res.json();
       return data;
     },

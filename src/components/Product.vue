@@ -4,11 +4,7 @@
       <!--product data-->
       <img
         class=" w-2/5 object-cover object-center h-80"
-<<<<<<< HEAD
-        :src="'http://207.46.228.91:3000/images/get/' + this.product.imageName"
-=======
-        :src="'http://207.46.228.91/restapi/images/get/' + this.product.imageName"
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+        :src="this.url +'images/get/' + this.product.imageName"
       />
       <div class="w-2/3 p-4">
         <h1 class="text-gray-900 font-bold text-2xl">
@@ -111,10 +107,7 @@ export default {
   data() {
     return {
       modalDelete: false,
-<<<<<<< HEAD
-=======
-      // url: `${process.env.VUE_APP_REST_API}`
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+      url: `${process.env.VUE_APP_REST_API}`
     };
   },
 
@@ -132,21 +125,13 @@ export default {
       console.log(id);
       axios
         .delete(
-<<<<<<< HEAD
-          `http://207.46.228.91:3000/images/delete/${this.product.imageName}`
-=======
-          `http://207.46.228.91/restapi/images/delete/${this.product.imageName}`
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+          `${this.url}images/delete/${this.product.imageName}`
         )
         .then((response) => {
           return response.data;
         })
         .then(() => {
-<<<<<<< HEAD
-          axios.delete(`http://207.46.228.91:3000/products/delete/${id}`);
-=======
-          axios.delete(`http://207.46.228.91/restapi/products/delete/${id}`);
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+          axios.delete(`${this.url}products/delete/${id}`);
         })
         .then(this.toggleDelete())
 
