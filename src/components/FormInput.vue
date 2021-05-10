@@ -227,10 +227,6 @@
     </form>
   </div>
 
-  <!---->
-  <div>
-    <pre>{{this.checkDuplicateName}}</pre>
-  </div>
 
 </template>
 
@@ -283,7 +279,7 @@ export default {
         const allProductName = this.productsResults[index].prodName;
 
         if (this.formInputValue.prodName == allProductName) {
-          if(this.checkDuplicateName == this.formInputValue.prodName){
+          if( this.formInputValue.prodName == this.checkDuplicateName ){
             count -= 1;
           }
           count += 1;
@@ -406,7 +402,7 @@ export default {
         (this.formInputValue.imageName = this.testEditData?.imageName || ""),
         (this.formInputValue.imageObj = "");
 
-      this.checkDuplicateName = this.testEditData.prodName;
+      this.checkDuplicateName = this.testEditData?.prodName || "";
       this.preview = this.imgUrlValue;
     } catch (error) {
       console.log(error);
