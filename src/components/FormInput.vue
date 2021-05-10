@@ -257,7 +257,7 @@ export default {
         productColor: [],
         imageName: "",
         imageObj: "",
-        url: `${process.env.VUE_APP_ROOT_API}`
+        url: `${process.env.VUE_APP_REST_API}`
       },
       preview: null,
       //check validate
