@@ -96,14 +96,9 @@
           v-show="checkValidate.errorName"
           class="text-red-600 text-base font-medium italic"
         >
-          Please input Name. 
+          Please input Name, Don't Duplicate Name. 
         </p>
-        <p
-          v-show="checkDuplicateName"
-          class="text-red-600 text-base font-medium italic"
-        >
-          !! Duplicate Name.
-        </p>
+        
       </div>
       <div class="mt-2">
         <label class="block text-base font-medium text-black" for="brand"
@@ -289,15 +284,19 @@ export default {
 
         if (this.formInputValue.prodName == allProductName) {
           if(this.checkDuplicateName == this.formInputValue.prodName){
-            
             count -= 1;
           }
           count += 1;
           
         }
       }
-      this.checkDuplicateName = count > 0 ? true : false;
-      this.checkValidate.errorName = this.formInputValue.prodName === "" ? true : false;
+
+      if (
+        this.formInputValue.prodName === "" ||
+        count > 0
+      ) {
+       this.checkValidate.errorName = true;
+      } else this.checkValidate.errorName = false;     
 
       if (
         this.formInputValue.prodDescription === "" ||
@@ -349,8 +348,7 @@ export default {
         this.checkValidate.errorProdManufactured ||
         this.checkValidate.errorPrice ||
         this.checkValidate.errorBrands ||
-        this.checkValidate.errorColors || 
-        this.checkDuplicateName
+        this.checkValidate.errorColors
       ) {
         console.log("Input error");
       } else {
@@ -408,7 +406,7 @@ export default {
         (this.formInputValue.imageName = this.testEditData?.imageName || ""),
         (this.formInputValue.imageObj = "");
 
-      this.checkDuplicateName = this.testEditData?.prodName || "";
+      this.checkDuplicateName = this.testEditData.prodName;
       this.preview = this.imgUrlValue;
     } catch (error) {
       console.log(error);
