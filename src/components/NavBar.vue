@@ -17,13 +17,7 @@
     </div>
   </nav>
   <router-view />
-</template>
-<<<<<<< HEAD
-
-=======
- 
- 
->>>>>>> 83f4f38685f067da629b460db81b4358f3b7e8fe
+</template> 
 <script>
 export default {};
 </script>
