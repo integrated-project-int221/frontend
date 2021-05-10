@@ -1,5 +1,5 @@
 
-FROM node:latest as build-stage
+FROM node:lts-alpine as build-stage
 WORKDIR /frontend
 COPY package*.json ./
 RUN npm install
@@ -11,8 +11,7 @@ FROM nginx as production-stage
 RUN mkdir /frontend
 COPY --from=build-stage /frontend/dist /frontend
 COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
-
+CMD ["nginx", "-g", "daemon off;"]
 # FROM nginx:1.19.10-alpine
 # RUN mkdir /frontend
 # COPY --from=build-stage /frontend/dist /frontend
