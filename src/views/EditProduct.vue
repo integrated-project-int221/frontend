@@ -45,7 +45,7 @@ export default {
       productByid: {},
       imgURL: "",
       modalOpen: false,
-      // url: `http://207.46.228.91/backend/`
+      url: `${process.env.VUE_APP_ROOT_API}`
     };
   },
 
@@ -58,7 +58,7 @@ export default {
       if (editValue.imageObj == "") {
         axios
           .put(
-            `http://207.46.228.91/backend/images/updatename/${this.id}/${editValue.prodName}`
+            `${this.url}images/updatename/${this.id}/${editValue.prodName}`
           )
           .then(() => {
             console.log("this images was send then post product");
@@ -68,7 +68,7 @@ export default {
         fd.append("File", editValue.imageObj, editValue.imageObj.name);
         axios
           .put(
-            `http://207.46.228.91/backend/images/update/${editValue.prodName}/${this.productByid.imageName}`,
+            `${this.url}images/update/${editValue.prodName}/${this.productByid.imageName}`,
             fd
           )
           .then(() => {
@@ -77,7 +77,7 @@ export default {
           });
       }
       axios
-        .put(`http://207.46.228.91/backend/products/update/${this.id}`, editValue)
+        .put(`${this.url}products/update/${this.id}`, editValue)
         .then((response) => {
           console.log(response);
         })
@@ -88,7 +88,7 @@ export default {
     },
     async fetchProductResult() {
       const res = await fetch(
-        `http://207.46.228.91/backend/products/item/${this.id}`
+        `${this.url}products/item/${this.id}`
       );
       const data = await res.json();
       return data;
@@ -96,7 +96,7 @@ export default {
   },
   async created() {
     this.productByid = await this.fetchProductResult();
-    this.imgURL = `http://207.46.228.91/backend/images/get/${this.productByid.imageName}`;
+    this.imgURL = `${this.url}images/get/${this.productByid.imageName}`;
   },
 };
 </script>

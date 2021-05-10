@@ -50,7 +50,7 @@ export default {
     return {
       productResults: [],
       openModal: false,
-      // url: `${process.env.VUE_APP_ROOT_API}`
+      url: `${process.env.VUE_APP_ROOT_API}`
     };
   },
 
@@ -70,7 +70,7 @@ export default {
     },
     async fetchProductResult() {
       try {
-        const res = await fetch("http://207.46.228.91/backend/products/items");
+        const res = await fetch(this.url+"products/items");
         const data = await res.json();
         return data;
       } catch (error) {
