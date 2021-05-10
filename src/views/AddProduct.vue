@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       modalOpen: false,
-      url: `${process.env.VUE_APP_REST_API}`
+      // url: `${process.env.VUE_APP_REST_API}`
     };
   },
   methods: {
@@ -46,7 +46,7 @@ export default {
 
       axios
         .post(
-          this.url+`images/upload/${newProduct.prodName}`,
+          `http://207.46.228.91/backend/images/upload/${newProduct.prodName}`,
           fd
         )
         .then((res) => {
@@ -54,7 +54,7 @@ export default {
           console.log(newProduct.prodName);
           console.log("this images was send then post product");
         })
-        .then(axios.post(this.url+"products/add", newProduct))
+        .then(axios.post("http://207.46.228.91/backend/products/add", newProduct))
         .then((response) => {
           console.log(response);
           console.log("this product added");

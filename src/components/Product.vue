@@ -4,7 +4,7 @@
       <!--product data-->
       <img
         class=" w-2/5 object-cover object-center h-80"
-        :src="this.url+'images/get/' + this.product.imageName"
+        :src="'http://207.46.228.91/backend/images/get/' + this.product.imageName"
       />
       <div class="w-2/3 p-4">
         <h1 class="text-gray-900 font-bold text-2xl">
@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       modalDelete: false,
-      url: `${process.env.VUE_APP_REST_API}`
+      // url: `${process.env.VUE_APP_REST_API}`
     };
   },
 
@@ -125,13 +125,13 @@ export default {
       console.log(id);
       axios
         .delete(
-          this.url+`images/delete/${this.product.imageName}`
+          `http://207.46.228.91/backend/images/delete/${this.product.imageName}`
         )
         .then((response) => {
           return response.data;
         })
         .then(() => {
-          axios.delete(this.url+`products/delete/${id}`);
+          axios.delete(`http://207.46.228.91/backend/products/delete/${id}`);
         })
         .then(this.toggleDelete())
 
